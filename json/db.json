@@ -1,0 +1,37 @@
+{
+  "details": [
+    {
+      "id": "1",
+      "firstname": "Vijendhar",
+      "lastname": "bhukya",
+      "gender": "Male",
+      "qualifications": "Btech",
+      "emails": "vijendhar@gmail.com",
+      "phoneNumbers": "9898766783",
+      "states": "telangana",
+      "address": "6-9/22"
+    },
+    {
+      "id": "2",
+      "firstname": "Vijay",
+      "lastname": "bhukya",
+      "gender": "Male",
+      "qualifications": "BCom",
+      "emails": "vijay@gmail.com",
+      "phoneNumbers": "98098098098",
+      "states": "telangana",
+      "address": "6-9/23"
+    },
+    {
+      "id": "3",
+      "firstname": "jhajahj",
+      "lastname": "bhukya",
+      "gender": "Male",
+      "qualifications": "Btech",
+      "emails": "badf@gmail.com",
+      "phoneNumbers": "9898760909",
+      "states": "telangana",
+      "address": "6-9/24"
+    }
+  ]
+}

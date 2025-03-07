@@ -1,0 +1,59 @@
+{
+  "details": [
+    {
+      "id": "1",
+      "firstname": "Vijendhar",
+      "lastname": "bhukya",
+      "gender": "Male",
+      "qualifications": "Btech",
+      "emails": "vijendhar@gmail.com",
+      "phoneNumbers": "9898766783",
+      "states": "telangana",
+      "address": "6-9/22"
+    },
+    {
+      "id": "2",
+      "firstname": "Vijen",
+      "lastname": "bh",
+      "gender": "Male",
+      "qualifications": "Btech",
+      "emails": "vijendhar@gmail.com",
+      "phoneNumbers": "9898098783",
+      "states": "telangana",
+      "address": "6-9/22"
+    },
+    {
+      "id": "3",
+      "firstname": "Vcffvv",
+      "lastname": "bhghjkk",
+      "gender": "Male",
+      "qualifications": "Btech",
+      "emails": "vijendhar@gmail.com",
+      "phoneNumbers": "9898098783",
+      "states": "telangana",
+      "address": "6-9/22"
+    },
+    {
+      "id": "4",
+      "firstname": "voj",
+      "lastname": "bh",
+      "gender": "male",
+      "qualifications": "BTECH",
+      "emails": "vghh@gmail.com",
+      "phoneNumbers": "0978788956",
+      "states": "Telangana",
+      "address": "6"
+    },
+    {
+      "id": "7",
+      "firstname": "n",
+      "lastname": "s",
+      "gender": "male",
+      "qualifications": "Tenth",
+      "emails": "a@gmail.com",
+      "phoneNumbers": "0987654321",
+      "states": "Maharastra",
+      "address": "ghjkkll"
+    }
+  ]
+}
