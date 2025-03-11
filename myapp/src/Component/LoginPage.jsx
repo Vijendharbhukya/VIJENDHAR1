@@ -21,6 +21,7 @@ const LoginPage = () => {
                 email: emails,
                 password: password
             }
+            alert('Saved successfully.')
             navigate('/FormPage', { state: enteredValue })
         }
     }

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import '../css/conformPage.css'
 
 const ConformationPage = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   // const data = location.state[0]; // data is an array, so we access the first item
-  // console.log('ndfghjk',enteredData)
   const [respData, setRespData] = useState([]);
-  console.log('b',respData)
 // Delete API calling//
   const onDeleteValue = (id) => {
     fetch(`http://localhost:3000/details/${id}`, {
@@ -18,23 +17,14 @@ const ConformationPage = () => {
       .then((resp) => {
         // Filter the deleted item out of the state to update the table
         setRespData((prevData) => prevData.filter((item) => item.id !== id));
+        alert('Deleted successfully from Json.')
       })
       .catch((err) => {
         console.error("Error deleting data:", err.message);
       });
   };
   const onEdit = (id) => {
-    fetch(`http://localhost:3000/details/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((resp) => {
-        // Filter the deleted item out of the state to update the table
-        setRespData((prevData) => prevData.filter((item) => item.id !== id));
-      })
-      .catch((err) => {
-        console.error("Error deleting data:", err.message);
-      });
+        navigate("/FormPage/"+id)
   };
   useEffect(() => {
     fetch("http://localhost:3000/details")
@@ -50,9 +40,10 @@ const ConformationPage = () => {
   return (
     <div>
       <h2>Confirmation Page</h2>
-      <table border="1" cellPadding="10" style={{ margin: "20px", width: "100%", textAlign: "left" }}>
+      <table border="1" cellPadding="10" style={{ margin: "20px", width: "100%", textAlign: "left",background:'white',border: '1px solid black' }}>
         <thead>
           <tr>
+            <th>ID</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Gender</th>
@@ -69,6 +60,7 @@ const ConformationPage = () => {
           {respData.length > 0 ? (
             respData.map((item) => (
               <tr key={item}>
+                <td>{item.id}</td>
                 <td>{item.firstname}</td>
                 <td>{item.lastname}</td>
                 <td>{item.gender}</td>
@@ -78,7 +70,7 @@ const ConformationPage = () => {
                 <td>{item.states}</td>
                 <td>{item.address}</td>
                 <td>
-                  <button onClick={() => console.log("Edit")} className="btn btn-warning btn-sm">
+                  <button onClick={()=>onEdit(item.id)} className="btn btn-warning btn-sm">
                     <i className="far fa-edit"></i> Edit
                   </button>
                 </td>

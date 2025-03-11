@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { increment } from "../Store/redux/counterSlice";
 import { useSelector } from "react-redux";
 const FormPage = () => {
-  const[id, setId]=useState()
+  const[id, setId]=useState('')
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [gender, setGender] = useState('');
@@ -80,7 +80,22 @@ const FormPage = () => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
+  const methodId=()=>{
+    if(urlId){
+      return "PUT"
+    }
+    else{
+      return "POST"
+    }
+  }
+const payloadUrl=()=>{
+if(urlId){
+  return "http://localhost:3000/details/"+urlId
+}
+else{
+  return "http://localhost:3000/details"
+}
+}
   const OnAddButton = () => {
     if (validateForm()) {
       const inputDetails =
@@ -95,8 +110,8 @@ const FormPage = () => {
           states: state,
           address: address
         }
-        fetch("http://localhost:3000/details",{
-          method:"POST",
+        fetch(payloadUrl(),{
+          method:methodId(),
           headers:{"content-type":"application/json"},
           body:JSON.stringify(inputDetails)
         }).then((res)=>{
@@ -105,28 +120,39 @@ const FormPage = () => {
         }).catch((err)=>{
           console.log(err.message)
         })
-      
     }
   };
-  // useEffect(()=>{
-  //   if(data){
-  //     setFirstName(data.firstname);
-  //     setLastName(data.lastname);
-  //     setGender(data.gender);
-  //     setQualification(data.qualifications);
-  //     setEmail(data.emails);
-  //     setPhoneNumber(data.phoneNumbers);
-  //     setState(data.states);
-  //     setAddress(data.address);
-  //   }
-  // },[])
+  const {urlId} = useParams();
+  useEffect(()=>{
+    if(urlId){
+      fetch(`http://localhost:3000/details/${urlId}`, {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setId(data.id)
+          setFirstName(data.firstname);
+          setLastName(data.lastname);
+          setGender(data.gender);
+          setQualification(data.qualifications);
+          setEmail(data.emails);
+          setPhoneNumber(data.phoneNumbers);
+          setState(data.states);
+          setAddress(data.address);
+        })
+        .catch((err) => {
+          console.error("Error deleting data:", err.message);
+        });
+      
+    }
+  },[])
   return (
     <div className="container-fluid">
       <div className="container">
       <div className="row">
           <div>
             <label className="col-2">ID:</label>
-            <input type="text" className="col-4" value={id} onChange={(e)=>{setId(e.target.value)}} />
+            <input type="text" className="col-4" value={id} disabled={urlId} onChange={(e)=>{setId(e.target.value)}} />
           </div>
           </div>
         <div className="row">

@@ -13,8 +13,8 @@ const  App  =()=>{
           <Routes>
             <Route path='/LoginPage' element={<LoginPage/>}/>
             <Route path='/FormPage' element={ <FormPage/>}/>
+            <Route path='/FormPage/:urlId' element={ <FormPage/>}/>
             <Route path='/ConformationPage' element={ <ConformationPage/>}/>
-            <Route path='/LoginPage' element={ <LoginPage/>}/>
           </Routes>
         )
       }
