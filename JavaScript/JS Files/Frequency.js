@@ -87,6 +87,7 @@ for(let i=0;i<arr2.length;i++){
 }
 const arr2 = [1, 1, 0, 1, 1, 1, 0, 0, 1];
 console.log(maxConsecutiveOnes(arr2));
+
 //Find the factorial of given number ?  
 Factorial =(n)=>{
 if(n<0) return "Negative value wount Accept"
@@ -229,6 +230,22 @@ const nestedArray = [[3, 4, 58], [709, 8, 9, [10, 11]], [111, 2]];
 const maxValue = findMaxInNestedArray(nestedArray);
 console.log("Maximum value:", maxValue); // Output: 709
 
+//24..Implement a javascript function that flattens a nested array into a single-dimensional array.  
+function flattenArray(arr) {
+  const result = [];
+  function flatten(subArr) {
+    for (let item of subArr) {
+      if (Array.isArray(item)) {
+        flatten(item); // recursively flatten nested arrays
+      } else {
+        result.push(item);
+      }
+    }
+  }
+  flatten(arr);
+  return result;
+}
+
 //Write a JavaScript function that returns the Fibonacci sequence up to a given number of terms. 
 function generateFibonacci(n) {
   if (n <= 0) return [];
@@ -240,6 +257,71 @@ function generateFibonacci(n) {
   }
   return fib;
 }
+
+//Given a string, write a javascript function to count the occurrences of each character in the string.  
+function countCharacters(str) {
+  const charCount = {};
+  for (let char of str) {
+    charCount[char] = (charCount[char] || 0) + 1;
+  }
+  return charCount;
+}
+const result1 = countCharacters("hello world");
+console.log(result1);
+
+//Write a javascript function that sorts an array of numbers in ascending order.  
+function sortAscending(arr) {
+  return arr.sort((a, b) => a - b);  // decending order return arr.sort((a, b) => b - a);
+}
+const numb = [5, 2, 9, 1, 7];
+const sorted = sortAscending(numb);
+console.log(sorted); // Output: [1, 2, 5, 7, 9]
+
+//Write a javascript function that reverses the order of words in a sentence without using the built-in reverse() method. 
+function reverseWords(sentence) {
+  const words = sentence.split(" ");
+  const reversed = [];
+  for (let i = words.length - 1; i >= 0; i--) {
+    reversed.push(words[i]);
+  }
+  return reversed.join(" ");
+}
+const ip = "JavaScript is fun to learn";
+const op = reverseWords(input);
+console.log(output); // Output: "learn to fun is JavaScript"
+
+//Write a function which converts string input into an object  
+//("a.b.c", "someValue");  
+//{a: {b: {c: "someValue"}}}  
+
+function stringToNestedObject(path, value) {
+  const keys = path.split(".");
+  const result = {};
+  let current = result;
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    if (i === keys.length - 1) {
+      current[key] = value; // assign value to the last key
+    } else {
+      current[key] = {};
+      current = current[key]; // move deeper
+    }
+  }
+  return result;
+}
+const outputs = stringToNestedObject("a.b.c", "someValue");
+console.log(outputs);
+// Output: { a: { b: { c: "someValue" } } }
+
+
+
+
+
+
+
+
+
+
 
 
 
