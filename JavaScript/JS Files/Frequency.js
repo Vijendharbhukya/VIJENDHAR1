@@ -1,0 +1,248 @@
+const elements =['a','b','c','a','b','a','b','c'];
+const frequency={};
+elements.forEach(item=>{
+    frequency[item]=(frequency[item]||0)+1;
+})
+console.log(frequency);
+const Array=['1','2','3','1','2'];
+const Object={};
+Array.forEach(item=>{
+    Object[item]=(Object[item]||0)+1;
+})
+console.log(Object);
+
+//2 sorting 
+const Sorting =['a','b','c','a','b','a','b','c'];
+Sorting.sort();
+console.log(Sorting);
+
+//3.Array duplicates  by using filter and indexOf methods
+const arr = ['a', 'b', 'c', 'a', 'b', 'a', 'b', 'c'];
+const duplicates = arr.filter((item, index) => arr.indexOf(item) !== index);
+const uniqueDuplicates = [...new Set(duplicates)];
+console.log(uniqueDuplicates); // ['a', 'b', 'c']
+// 3. Remove Duplicates (gets Unique values Only)
+const arr1 = ['a', 'b', 'c', 'a', 'b', 'a', 'b', 'c'];
+const unique=[...new Set(arr1)];//new Set(arr1)->A Set is a built-in JavaScript object that stores unique values only.
+console.log(unique);
+
+//4.Program to find longest word in a given sentence ? 
+//fing logest word in a sentences//
+const String = "hello Vijendhar good morning";
+const Fun=(String)=>{
+const S=String.split(' ')
+return S.reduce((acc,curr)=>acc.length<curr.length?curr:acc)
+}
+console.log(Fun(String))
+
+//4.How to check whether a string is palindrome or not ? 
+function isPalindrome(str) {
+  // Remove non-alphanumeric characters and convert to lowercase
+  const cleaned = str.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
+  const reversed = cleaned.split('').reverse().join('');
+  return cleaned === reversed;
+}
+// Example usage:
+console.log(isPalindrome("madam"));         // true
+console.log(isPalindrome("racecar"));       // true
+console.log(isPalindrome("hello"));         // false
+console.log(isPalindrome("A man, a plan, a canal: Panama")); // true
+
+//5.Search text in a given sentence  
+const Sen="JavaScript is a powerful language.";
+const Search="powerful";
+const Sear=(Sen,Search)=>{   
+    return Sen.includes(Search);
+}
+console.log(Sear(Sen,Search));
+
+//Program to find Reverse of a string Without using built-in method ? in build methods are .split() .reverse().join()
+function reverseString(str) {
+  let reversed = "";
+  for (let i = str.length - 1; i >= 0; i--) {
+    reversed += str[i];
+  }
+  return reversed;
+}
+// Example usage:
+const input = "JavaScript";
+const output = reverseString(input);
+console.log("Reversed String:", output); // tpircSavaJ
+
+//Find the max count of consecutive 1’s in an array ?  
+function maxConsecutiveOnes(arr2){
+    let maxCount=0;
+    let currentCount=0;
+for(let i=0;i<arr2.length;i++){
+    if(arr2[i]===1){
+      currentCount++;
+      if(currentCount>maxCount){
+          maxCount=currentCount;
+      }
+    }else{
+        currentCount=0;
+    }
+}
+    return maxCount;
+}
+const arr2 = [1, 1, 0, 1, 1, 1, 0, 0, 1];
+console.log(maxConsecutiveOnes(arr2));
+//Find the factorial of given number ?  
+Factorial =(n)=>{
+if(n<0) return "Negative value wount Accept"
+let Result=1;
+for(let i=2; i<=n;i++){
+ Result *=i;
+}
+return Result;
+}
+console.log("Factorial of 5:", Factorial(5)); 
+
+//Given 2 arrays that are sorted [0,3,4,31] and [4,6,30]. Merge them and sort [0,3,4,4,6,30,31]?  
+function mergeSortedArrays(arr1, arr2) {
+  const mergedArray = [];
+  let i = 0;
+  let j = 0;
+  // Compare elements from both arrays and push the smaller one
+  while (i < arr1.length && j < arr2.length) {
+    if (arr1[i] < arr2[j]) {
+      mergedArray.push(arr1[i]);
+      i++;
+    } else {
+      mergedArray.push(arr2[j]);
+      j++;
+    }
+  }
+  // Add remaining elements (if any)
+  while (i < arr1.length) {
+    mergedArray.push(arr1[i]);
+    i++;
+  }
+  while (j < arr2.length) {
+    mergedArray.push(arr2[j]);
+    j++;
+  }
+  return mergedArray;
+}
+// Example usage:
+const array1 = [0, 3, 4, 31];
+const array2 = [4, 6, 30];
+const result = mergeSortedArrays(array1, array2);
+console.log(result); // Output: [0, 3, 4, 4, 6, 30, 31]
+
+//Create a function which will accepts two arrays arr1 and arr2. The function should return true if every value in arr1 has its corresponding value squared in array2. The frequency of values must be same. 
+function same(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+  const frequencyCounter1 = {};
+  const frequencyCounter2 = {};
+  for (let val of arr1) {
+    frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1;
+  }
+  for (let val of arr2) {
+    frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1;
+  }
+  for (let key in frequencyCounter1) {
+    const squaredKey = key ** 2;
+    if (!(squaredKey in frequencyCounter2)) return false;
+    if (frequencyCounter2[squaredKey] !== frequencyCounter1[key]) return false;
+  }
+  return true;
+}
+
+//Given two strings. Find if one string can be formed by rearranging the letters of other string.
+function isAnagram(str1, str2) {
+  if (str1.length !== str2.length) return false;
+  const lookup = {};
+  for (let char of str1) {
+    lookup[char] = (lookup[char] || 0) + 1;
+  }
+  for (let char of str2) {
+    if (!lookup[char]) return false;
+    lookup[char] -= 1;
+  }
+  return true;
+}
+
+//Write logic to get unique objects from below array ?  
+//I/P: [{name: "sai"},{name:"Nang"},{name: "sai"},{name:"Nang"},{name: "111111"}];  
+//O/P: [{name: "sai"},{name:"Nang"}{name: "111111"}  
+function getUniqueObjects(arr) {
+  const seen = new Map();
+  for (let obj of arr) {
+    if (!seen.has(obj.name)) {
+      seen.set(obj.name, obj);
+    }
+  }
+  return Array.from(seen.values());
+}
+//Write a JavaScript program to find the maximum number in an array.
+function findMax(arr) {
+  return Math.max(...arr);
+}
+// Example usage:
+const numbers = [10, 45, 32, 67, 89, 23];
+const maxNumber = findMax(numbers);
+console.log("Maximum number:", maxNumber); // Output: 89
+
+//Write a JavaScript function that takes an array of numbers and returns a new array with only the even numbers.  
+function getEvenNumbers(arr) {
+  return arr.filter(num => num % 2 === 0);
+}
+const number1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const evenNumbers = getEvenNumbers(numbers);
+console.log(evenNumbers); // Output: [2, 4, 6, 8, 10]
+
+//Write a JavaScript function to check if a given number is prime.  
+function isPrime(num) {
+  if (num <= 1) return false; // 0 and 1 are not prime
+  if (num === 2) return true; // 2 is the only even prime number
+  if (num % 2 === 0) return false; // eliminate even numbers
+  for (let i = 3; i <= Math.sqrt(num); i += 2) {
+    if (num % i === 0) return false;
+  }
+  return true;
+}
+console.log(isPrime(2));    // true
+console.log(isPrime(17));   // true
+console.log(isPrime(18));   // false
+console.log(isPrime(1));    // false
+
+//Write a JavaScript program to find the largest element in a nested array.  
+//[[3, 4, 58], [709, 8, 9, [10, 11]], [111, 2]] 
+function findMaxInNestedArray(arr) {
+  let max = -Infinity;
+  function findMax(subArr) {
+    for (let item of subArr) {
+      if (Array.isArray(item)) {
+        findMax(item); // recursive call for nested arrays
+      } else {
+        if (item > max) {
+          max = item;
+        }
+      }
+    }
+  }
+  findMax(arr);
+  return max;
+}
+const nestedArray = [[3, 4, 58], [709, 8, 9, [10, 11]], [111, 2]];
+const maxValue = findMaxInNestedArray(nestedArray);
+console.log("Maximum value:", maxValue); // Output: 709
+
+//Write a JavaScript function that returns the Fibonacci sequence up to a given number of terms. 
+function generateFibonacci(n) {
+  if (n <= 0) return [];
+  if (n === 1) return [0];
+  if (n === 2) return [0, 1];
+  const fib = [0, 1];
+  for (let i = 2; i < n; i++) {
+    fib.push(fib[i - 1] + fib[i - 2]);
+  }
+  return fib;
+}
+
+
+
+
+
+
