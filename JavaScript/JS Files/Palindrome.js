@@ -7,7 +7,6 @@
 // }
 // console.log(Function("A man, a plan, a canal, Panama"))
 
-
 const isPalindrome = (str) => {
     // Step 1: Normalize the string (convert to lowercase and remove non-alphanumeric characters)
     const normalizedStr = str.toLowerCase().replace(/[^a-z0-9]/g, "");
