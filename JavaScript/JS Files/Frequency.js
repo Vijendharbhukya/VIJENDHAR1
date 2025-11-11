@@ -1,20 +1,42 @@
+// 1.frequency 
 const elements =['a','b','c','a','b','a','b','c'];
 const frequency={};
 elements.forEach(item=>{
     frequency[item]=(frequency[item]||0)+1;
 })
 console.log(frequency);
-const Array=['1','2','3','1','2'];
-const Object={};
-Array.forEach(item=>{
-    Object[item]=(Object[item]||0)+1;
-})
-console.log(Object);
+//1. frequency without Build in methods
+let A=[1,2,3,4,5,3,2,1,3,4,6,2,1,3];
+function Freq(A){
+    let Fre={};
+    for(let item of A){
+        Fre[item]=(Fre[item]||0)+1;
+    }
+    return Fre;
+}
+console.log(Freq(A))
 
 //2 sorting 
 const Sorting =['a','b','c','a','b','a','b','c'];
 Sorting.sort();
 console.log(Sorting);
+//without in build method 
+function Sorted(arr){
+    for(let i=0;i<=arr.length-1;i++){
+        for(let j=0;j<=arr.length-i-1;j++){
+            if(arr[j]>arr[j+1]){
+                let temp=arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
+                
+            }
+        }
+    }
+    return arr;
+}
+
+let nums = [64, 34, 25, 12, 22, 11, 90];
+console.log("Sorted array:", Sorted(nums));
 
 //3.Array duplicates  by using filter and indexOf methods
 const arr = ['a', 'b', 'c', 'a', 'b', 'a', 'b', 'c'];
@@ -25,6 +47,20 @@ console.log(uniqueDuplicates); // ['a', 'b', 'c']
 const arr1 = ['a', 'b', 'c', 'a', 'b', 'a', 'b', 'c'];
 const unique=[...new Set(arr1)];//new Set(arr1)->A Set is a built-in JavaScript object that stores unique values only.
 console.log(unique);
+//3. without buildin methods
+function duplicate(arr){
+  let dup=[];
+  let Value={}
+  for(let item of arr){
+     if(!Value[item]){
+         dup.push(item);
+         Value[item]=true;
+     } 
+  }
+  return dup;
+}
+let c=[1,2,3,4,5,1,2,3];
+console.log(duplicate(c))
 
 //4.Program to find longest word in a given sentence ? 
 //fing logest word in a sentences//
@@ -34,6 +70,19 @@ const S=String.split(' ')
 return S.reduce((acc,curr)=>acc.length<curr.length?curr:acc)
 }
 console.log(Fun(String))
+// without inBuild methods
+let Str="Vijendhar Soujanya Jahnavibhukya";
+function Long(Str){
+const words=Str.split(" ");
+let longest='';
+for(let word of words){
+    if(word.length>longest.length){
+        longest=word;
+    }
+}
+return longest;
+}
+console.log(Long(Str));
 
 //4.How to check whether a string is palindrome or not ? 
 function isPalindrome(str) {
@@ -47,6 +96,13 @@ console.log(isPalindrome("madam"));         // true
 console.log(isPalindrome("racecar"));       // true
 console.log(isPalindrome("hello"));         // false
 console.log(isPalindrome("A man, a plan, a canal: Panama")); // true
+//Or
+function isPalindrome(str) {
+    const reversed = str.split('').reverse().join('');
+    return str === reversed;
+}
+console.log(isPalindrome("madam")); // true
+console.log(isPalindrome("hello")); // false
 
 //5.Search text in a given sentence  
 const Sen="JavaScript is a powerful language.";
@@ -69,6 +125,39 @@ const input = "JavaScript";
 const output = reverseString(input);
 console.log("Reversed String:", output); // tpircSavaJ
 
+//Write a javascript function that reverses the order of words in a sentence without using the built-in reverse() method. 
+function reverseWords(sentence) {
+  const words = sentence.split(" ");
+  const reversed = [];
+  for (let i = words.length - 1; i >= 0; i--) {
+    reversed.push(words[i]);
+  }
+  return reversed.join(" ");
+}
+const ip = "JavaScript is fun to learn";
+const op = reverseWords(input);
+console.log(op); // Output: "learn to fun is JavaScript"
+
+//with built-in method
+function reverseWords(sentence) {
+  return sentence.split(" ").reverse().join(" ");
+}
+console.log(reverseWords("Hello world this is JavaScript"));
+// Output: "JavaScript is this world Hello"
+
+
+
+//Find the factorial of given number ?  
+Factorial =(n)=>{
+if(n<0) return "Negative value wount Accept"
+let Result=1;
+for(let i=2; i<=n;i++){
+ Result *=i;
+}
+return Result;
+}
+console.log("Factorial of 5:", Factorial(5)); 
+
 //Find the max count of consecutive 1’s in an array ?  
 function maxConsecutiveOnes(arr2){
     let maxCount=0;
@@ -88,16 +177,6 @@ for(let i=0;i<arr2.length;i++){
 const arr2 = [1, 1, 0, 1, 1, 1, 0, 0, 1];
 console.log(maxConsecutiveOnes(arr2));
 
-//Find the factorial of given number ?  
-Factorial =(n)=>{
-if(n<0) return "Negative value wount Accept"
-let Result=1;
-for(let i=2; i<=n;i++){
- Result *=i;
-}
-return Result;
-}
-console.log("Factorial of 5:", Factorial(5)); 
 
 //Given 2 arrays that are sorted [0,3,4,31] and [4,6,30]. Merge them and sort [0,3,4,4,6,30,31]?  
 function mergeSortedArrays(arr1, arr2) {
@@ -245,6 +324,21 @@ function flattenArray(arr) {
   flatten(arr);
   return result;
 }
+//same one as 24question.
+var arra=[0,[1,2],3,4,[5,6,7],8,9];
+let result12=[...arra];
+let i=0;
+while(i<result12.length){
+    if(Array.isArray(result12[i])){
+        result.splice(i,1,...result12[i])
+    } else{
+        i++;
+    }
+}
+console.log(result12);
+//Or
+let data=[1,2,3,[4,5],6,[7,8],9]
+console.log(data.flat(1));//output [1,2,3,4,5,6,7,8,9]
 
 //Write a JavaScript function that returns the Fibonacci sequence up to a given number of terms. 
 function generateFibonacci(n) {
@@ -277,23 +371,9 @@ const numb = [5, 2, 9, 1, 7];
 const sorted = sortAscending(numb);
 console.log(sorted); // Output: [1, 2, 5, 7, 9]
 
-//Write a javascript function that reverses the order of words in a sentence without using the built-in reverse() method. 
-function reverseWords(sentence) {
-  const words = sentence.split(" ");
-  const reversed = [];
-  for (let i = words.length - 1; i >= 0; i--) {
-    reversed.push(words[i]);
-  }
-  return reversed.join(" ");
-}
-const ip = "JavaScript is fun to learn";
-const op = reverseWords(input);
-console.log(output); // Output: "learn to fun is JavaScript"
-
 //Write a function which converts string input into an object  
 //("a.b.c", "someValue");  
 //{a: {b: {c: "someValue"}}}  
-
 function stringToNestedObject(path, value) {
   const keys = path.split(".");
   const result = {};
@@ -312,6 +392,28 @@ function stringToNestedObject(path, value) {
 const outputs = stringToNestedObject("a.b.c", "someValue");
 console.log(outputs);
 // Output: { a: { b: { c: "someValue" } } }
+//superclass 
+
+
+let array = [
+  {
+    id: 7721,
+    name: "grill",
+    purchases: [
+      {
+        id: 50,
+        name: "All"
+      }
+    ]
+  }
+];
+function findSuperClassOfId(targetId) {
+  return array.find(item =>
+    item.purchases.some(purchase => purchase.id === targetId)
+  );
+}
+const results = findSuperClassOfId(50);
+console.log(results);
 
 
 
